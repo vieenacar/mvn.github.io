@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marvie Nacar — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3EE;
+    --warm-white: #FDFAF7;
+    --navy: #1A2744;
+    --navy-light: #243258;
+    --gold: #C9973B;
+    --gold-light: #E8C97A;
+    --terracotta: #C4614A;
+    --sage: #6B8C7A;
+    --text: #2C2C2C;
+    --text-muted: #7A7068;
+    --border: rgba(26,39,68,0.12);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: rgba(247,243,238,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-cta {
+    background: var(--navy);
+    color: var(--cream) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 64px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 1.0;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.2vw, 26px);
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .hero-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 44px;
+  }
+
+  .role-pill {
+    padding: 7px 16px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+    background: rgba(255,255,255,0.6);
+    transition: all 0.2s;
+  }
+  .role-pill:hover { background: var(--navy); color: var(--cream); border-color: var(--navy); }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 14px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover { background: var(--gold); color: var(--navy); transform: translateY(-1px); }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+    padding: 13px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { background: var(--navy); color: var(--cream); }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--navy);
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 240px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.04);
+    white-space: nowrap;
+    user-select: none;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-card {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 48px;
+  }
+
+  .hero-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--terracotta) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 28px;
+    position: relative;
+    box-shadow: 0 0 0 8px rgba(201,151,59,0.2), 0 0 0 24px rgba(201,151,59,0.08);
+  }
+
+  .hero-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 32px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .hero-stat {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .hero-stat-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    display: block;
+    margin-top: 4px;
+  }
+
+  .hero-location {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .hero-avail {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(107,140,122,0.25);
+    border: 1px solid rgba(107,140,122,0.4);
+    color: #9ECDB6;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .avail-dot {
+    width: 6px; height: 6px;
+    background: #9ECDB6;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--warm-white);
+    padding: 100px 0;
+    position: relative;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4A4540;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .about-text p strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  .cert-card {
+    background: var(--navy);
+    color: white;
+    padding: 32px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::before {
+    content: '✦';
+    position: absolute;
+    top: -20px; right: 20px;
+    font-size: 100px;
+    color: rgba(201,151,59,0.08);
+    font-family: serif;
+  }
+
+  .cert-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  .cert-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .cert-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .values-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .values-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .values-list li::before {
+    content: '→';
+    color: var(--gold);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── SERVICES ── */
+  #services {
+    background: var(--cream);
+    padding: 100px 0;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 56px;
+  }
+
+  .service-card {
+    background: var(--warm-white);
+    padding: 40px 32px;
+    transition: all 0.3s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover { background: var(--navy); }
+  .service-card:hover .service-icon { color: var(--gold); }
+  .service-card:hover .service-name { color: white; }
+  .service-card:hover .service-desc { color: rgba(255,255,255,0.55); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+    transition: color 0.3s;
+    color: var(--navy);
+  }
+
+  .service-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    line-height: 1.2;
+    transition: color 0.3s;
+  }
+
+  .service-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-weight: 300;
+    transition: color 0.3s;
+  }
+
+  /* ── SKILLS ── */
+  #skills {
+    background: var(--navy);
+    padding: 100px 0;
+  }
+
+  #skills .section-label { color: var(--gold-light); }
+  #skills .section-title { color: var(--cream); }
+
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 56px;
+  }
+
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .skill-name {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
+  }
+
+  .skill-bar-wrap {
+    width: 120px;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  .tool-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .tool-tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border: 1px solid rgba(201,151,59,0.3);
+    color: rgba(255,255,255,0.6);
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+    background: rgba(201,151,59,0.06);
+    transition: all 0.2s;
+  }
+  .tool-tag:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,151,59,0.12); }
+
+  /* ── EXPERIENCE ── */
+  #experience {
+    background: var(--warm-white);
+    padding: 100px 0;
+  }
+
+  .timeline {
+    margin-top: 56px;
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 48px;
+    padding-left: 40px;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -40px; top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 3px var(--gold);
+  }
+
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .timeline-company {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 14px;
+    letter-spacing: 0.04em;
+  }
+
+  .timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .timeline-bullets li {
+    font-size: 14px;
+    color: #5A5550;
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .timeline-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--navy);
+    padding: 100px 0;
+    text-align: center;
+  }
+
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::after { display: none; }
+  #contact .section-title { color: white; text-align: center; margin-bottom: 20px; }
+
+  .contact-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-bottom: 52px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+  }
+
+  .contact-email {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 300;
+    border-bottom: 1px solid rgba(201,151,59,0.4);
+    padding-bottom: 4px;
+    margin-bottom: 56px;
+    transition: color 0.2s;
+  }
+  .contact-email:hover { color: var(--gold-light); }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 12px 24px;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .contact-link:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111827;
+    padding: 24px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 300;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: rgba(255,255,255,0.2);
+    font-weight: 300;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .hero-left > * {
+    animation: slideIn 0.7s ease both;
+  }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 120px 28px 60px; }
+    .container { padding: 0 24px; }
+    .about-grid, .skills-layout { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Marvie Nacar</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <span class="hero-tag">Available for Remote Work</span>
+    <h1 class="hero-name">Marvie<br><em>Nacar</em></h1>
+    <p class="hero-tagline">Where precision meets creativity —<br>across healthcare, service, and design.</p>
+    <div class="hero-roles">
+      <span class="role-pill">Healthcare Admin & Billing</span>
+      <span class="role-pill">Customer Support</span>
+      <span class="role-pill">Social Media Manager</span>
+      <span class="role-pill">Real Estate Admin</span>
+      <span class="role-pill">3D Visualization</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <span class="hero-bg-text">MVN</span>
+    <div class="hero-card">
+      <div class="hero-avatar">MN</div>
+      <span class="hero-avail"><span class="avail-dot"></span>Open to Work</span>
+      <p class="hero-location">📍 Quezon City, Philippines</p>
+      <div class="hero-stat-grid">
+        <div class="hero-stat">
+          <span class="hero-stat-num">3+</span>
+          <span class="hero-stat-label">Years Experience</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">95%</span>
+          <span class="hero-stat-label">Satisfaction Rate</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">50+</span>
+          <span class="hero-stat-label">Daily Cases</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">5</span>
+          <span class="hero-stat-label">Days to Master Tools</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Versatile. Certified.<br>Results-Driven.</h2>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>I'm a <strong>multi-skilled virtual professional</strong> with over 3 years of experience spanning customer service leadership, digital administration, real estate support, and architectural visualization. I've recently expanded into <strong>healthcare administration and US medical billing</strong>, earning my certification through Brightroot VA.</p>
+        <p>What sets me apart is my ability to <strong>master new tools and workflows in 3–5 days</strong> — whether it's a proprietary CRM, billing platform, or creative suite. At Amazon, I maintained a <strong>95% customer satisfaction rating</strong> while managing 50+ complex cases daily and leading high-priority escalations.</p>
+        <p>I bridge the gap between creative thinking and operational precision — equally at home designing a 3D architectural render as I am streamlining a billing workflow or growing a brand's social presence.</p>
+        <ul class="values-list" style="margin-top:24px;">
+          <li>Certified in Healthcare Administration & US Medical Billing (Brightroot VA)</li>
+          <li>Promoted to DART Leadership at Amazon for escalation excellence</li>
+          <li>Experienced in GoHighLevel, Asana, WordPress, Mailchimp & AI tools</li>
+          <li>Currently active in real estate sales at ASR Realty & Brokerage</li>
+        </ul>
+      </div>
+      <div class="fade-up" style="animation-delay:0.2s">
+        <div class="cert-card">
+          <span class="cert-badge">Certified 2025/2026</span>
+          <p class="cert-title">Healthcare Administration & US Medical Billing</p>
+          <p class="cert-sub">Brightroot VA Training Program — Passed Evaluation</p>
+        </div>
+        <div class="cert-card" style="background:var(--terracotta); margin-top:0;">
+          <span class="cert-badge" style="background:rgba(255,255,255,0.25);color:white;">Leadership</span>
+          <p class="cert-title">DART Customer Escalation Leadership</p>
+          <p class="cert-sub">Amazon — 95% Satisfaction Rate · June 2022–Jan 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <p class="section-label">What I Offer</p>
+    <h2 class="section-title">Services</h2>
+    <div class="services-grid fade-up">
+      <div class="service-card">
+        <span class="service-icon">🏥</span>
+        <span class="service-num">01</span>
+        <h3 class="service-name">Healthcare Admin & Billing</h3>
+        <p class="service-desc">Medical billing workflows, ICD-10 coding concepts, insurance claims, patient records management, and HIPAA-compliant documentation.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎧</span>
+        <span class="service-num">02</span>
+        <h3 class="service-name">Customer Support</h3>
+        <p class="service-desc">Omnichannel customer support, escalation handling, CRM management, conflict resolution, and satisfaction-focused case management.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📱</span>
+        <span class="service-num">03</span>
+        <h3 class="service-name">Social Media & Admin</h3>
+        <p class="service-desc">Content creation, scheduling, newsletter campaigns, WordPress management, Mailchimp, database admin, and AI-assisted productivity.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏡</span>
+        <span class="service-num">04</span>
+        <h3 class="service-name">Real Estate Admin</h3>
+        <p class="service-desc">Property valuations, market research, client database management, listing coordination, and buyer pre-qualification support.</p>
+      </div>
+    </div>
+    <div class="services-grid fade-up" style="margin-top:1px; border-top:none;">
+      <div class="service-card">
+        <span class="service-icon">🧊</span>
+        <span class="service-num">05</span>
+        <h3 class="service-name">3D Visualization</h3>
+        <p class="service-desc">Architectural rendering using AutoCAD, SketchUp, and Lumion. Transforming conceptual designs into polished 3D presentations.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🎨</span>
+        <span class="service-num">06</span>
+        <h3 class="service-name">Graphic Design & Video</h3>
+        <p class="service-desc">Photo and video editing using Adobe Photoshop, Lightroom, Illustrator, CapCut, and Figma for brand and marketing collateral.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🤖</span>
+        <span class="service-num">07</span>
+        <h3 class="service-name">AI-Powered Workflows</h3>
+        <p class="service-desc">Leveraging ChatGPT and Gemini to accelerate content drafting, research, automation, and organizational workflows.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📊</span>
+        <span class="service-num">08</span>
+        <h3 class="service-name">CRM & Database Mgmt</h3>
+        <p class="service-desc">GoHighLevel, Asana, Trello, and proprietary CRM systems for pipeline management, records, and lead tracking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Technical Proficiency</p>
+    <h2 class="section-title">Skills & Tools</h2>
+    <div class="skills-layout">
+      <div class="fade-up">
+        <p class="skill-group-title">Core Competencies</p>
+        <div class="skill-item"><span class="skill-name">Customer Support & Escalation</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Healthcare Admin & Billing</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Database & Records Mgmt</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Social Media Management</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Real Estate Administration</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">3D Visualization & Design</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+
+        <p class="skill-group-title" style="margin-top:36px;">Design & Creative Tools</p>
+        <div class="tool-tags">
+          <span class="tool-tag">Adobe Photoshop</span>
+          <span class="tool-tag">Lightroom</span>
+          <span class="tool-tag">Illustrator</span>
+          <span class="tool-tag">Figma</span>
+          <span class="tool-tag">CapCut</span>
+          <span class="tool-tag">Ibis Paint</span>
+          <span class="tool-tag">AutoCAD</span>
+          <span class="tool-tag">SketchUp</span>
+          <span class="tool-tag">Lumion</span>
+        </div>
+      </div>
+      <div class="fade-up" style="animation-delay:0.15s">
+        <p class="skill-group-title">CRM & Project Management</p>
+        <div class="tool-tags">
+          <span class="tool-tag">GoHighLevel</span>
+          <span class="tool-tag">Asana</span>
+          <span class="tool-tag">Trello</span>
+          <span class="tool-tag">Amazon Case Systems</span>
+        </div>
+
+        <p class="skill-group-title" style="margin-top:32px;">Web & Marketing</p>
+        <div class="tool-tags">
+          <span class="tool-tag">WordPress</span>
+          <span class="tool-tag">Mailchimp</span>
+          <span class="tool-tag">Google Forms</span>
+          <span class="tool-tag">Newsletter Design</span>
+        </div>
+
+        <p class="skill-group-title" style="margin-top:32px;">AI & Productivity</p>
+        <div class="tool-tags">
+          <span class="tool-tag">ChatGPT</span>
+          <span class="tool-tag">Gemini</span>
+          <span class="tool-tag">MS Excel</span>
+          <span class="tool-tag">MS Word</span>
+          <span class="tool-tag">PowerPoint</span>
+        </div>
+
+        <p class="skill-group-title" style="margin-top:32px;">Healthcare</p>
+        <div class="tool-tags">
+          <span class="tool-tag">Medical Terminology</span>
+          <span class="tool-tag">ICD-10 Concepts</span>
+          <span class="tool-tag">Billing Workflows</span>
+          <span class="tool-tag">HIPAA Awareness</span>
+          <span class="tool-tag">Insurance Claims</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Work History</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline fade-up">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">June 2025 – Present</p>
+        <h3 class="timeline-role">Sales Agent</h3>
+        <p class="timeline-company">ASR Realty and Brokerage · Part-time</p>
+        <ul class="timeline-bullets">
+          <li>Property valuations and comparative market analysis for residential listings</li>
+          <li>Client roster management and buyer financial pre-qualification guidance</li>
+          <li>Pipeline tracking and follow-up coordination via CRM tools</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">June 2022 – January 2026</p>
+        <h3 class="timeline-role">Customer Service Associate / DART Leadership</h3>
+        <p class="timeline-company">Amazon · Full-time</p>
+        <ul class="timeline-bullets">
+          <li>Managed 50+ daily cases covering billing, account escalations, and conflict resolution with a 95% satisfaction rating</li>
+          <li>Promoted to DART Leadership to handle highest-priority escalations and mentor team members</li>
+          <li>Identified workflow inefficiencies and collaborated with teams to improve customer experience</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">March 2020 – April 2022</p>
+        <h3 class="timeline-role">Virtual Assistant & Website Manager</h3>
+        <p class="timeline-company">Rotary Club of Cebu · Contract</p>
+        <ul class="timeline-bullets">
+          <li>Administered WordPress site and managed 200+ member database</li>
+          <li>Designed and deployed Mailchimp newsletters driving engagement growth</li>
+          <li>Handled financial tracking, records, and administrative correspondence</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-date">October 2019 – March 2020</p>
+        <h3 class="timeline-role">3D Render / Visualizer</h3>
+        <p class="timeline-company">Vox Spark · Full-time</p>
+        <ul class="timeline-bullets">
+          <li>Created high-quality architectural visualizations using AutoCAD and Lumion</li>
+          <li>Transformed conceptual sketches into client-ready 3D renders and presentations</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Let's Connect</p>
+    <h2 class="section-title">Ready to work<br>together?</h2>
+    <p class="contact-sub">Open to remote roles worldwide — full-time, part-time, or project-based.</p>
+    <a href="mailto:viernacar05@gmail.com" class="contact-email">viernacar05@gmail.com</a>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/nyie1RN" target="_blank" class="contact-link">
+        <span>in</span> LinkedIn
+      </a>
+      <a href="#" class="contact-link">📄 Download Resume</a>
+      <a href="#services" class="contact-link">🛠 View Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-text">© 2026 Marvie Verges Nacar · All rights reserved</span>
+  <span class="footer-brand">MVN</span>
+  <span class="footer-text">Open to remote work worldwide</span>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
